@@ -19,14 +19,16 @@ export class HeroesComponent implements OnInit {
  }
 
 
-selectedHero ?: Hero;
-onSelect(hero : Hero) : void {
-  this.selectedHero = hero
-}
+// selectedHero ?: Hero;
+
 
   // constructor() { } 
   constructor(private heroService : HeroService, private messageService : MessageService) {} //注入点
 
+  // onSelect(hero : Hero) : void {
+  //   this.selectedHero = hero;
+  //   this.messageService.add(`HeroesComponent: Selected hero id = ${hero.id}`)
+  // }
   getHeroes() :void {
     // this.heroes = this.heroService.getHeroes(); //从服务器中获取数据
     this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes)//改用异步的方法

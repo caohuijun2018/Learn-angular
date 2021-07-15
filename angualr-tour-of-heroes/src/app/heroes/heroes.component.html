@@ -4,14 +4,26 @@
 <div><span>name : {{hero.name}}</span></div> -->
 
 <h2>My Heoroes</h2>
+<div>
+    <label for="new-hero">Hero name: </label>
+    <input id="new-hero" #heroName />
+    <br/>
+    <button class="add-button" (click)="add(heroName.value); heroName.value=''">
+      Add hero
+    </button>
+  </div>
+  
 <ul class='heroes'>
     <li *ngFor="let hero of heroes">
-        <a routerLink = '/details/:{{hero.id}}'> 
+        <a routerLink = '/detail/{{hero.id}}'> 
             <span class='badge'>{{hero.id}}</span>{{hero.name}}
         </a>
-        
+        <button class = 'delete' title="delete hero" (click) = 'delete(hero)'>
+            x
+        </button>
     </li>
 </ul>
+
 <!-- <app-hero-detail [hero] = 'selectedHero'></app-hero-detail> -->
 <!-- <div *ngIf="selectedHero">
     <h2>{{selectedHero.name | uppercase}} Details</h2>

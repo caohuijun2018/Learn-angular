@@ -23,12 +23,19 @@ export class HeroDetailComponent implements OnInit {
   }
 
     getHero() : void {
-      
-      const id = Number(this.route.snapshot.paramMap.get('id'));
+      const id = Number(this.route.snapshot.paramMap.get('id')!);
       console.log(id)
-      this.heroService.getHero(id).subscribe(hero => this.hero = hero);
+      this.heroService.getHero(id).subscribe(hero => (this.hero = hero))
+      // const id = Number(this.route.snapshot.paramMap.get('id'));
+      // console.log(id)
+      // this.heroService.getHero(id).subscribe(hero => this.hero = hero);
     }
     goBack() :void {
       this.location.back()
+    }
+    save() :void {
+      if(this.hero) {
+        this.heroService.updateHero(this.hero).subscribe(() => this.goBack())//this.hero会传入修改的值，通过updataHero方法来保存对名字的修改，然后导航到前一个视图
+      }
     }
 }

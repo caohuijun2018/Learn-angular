@@ -13,10 +13,10 @@ export class HeroesComponent implements OnInit {
 
 
  heroes : Hero[] = [];
- hero  : Hero  = {
-   id : 1,
-   name : 'Windstrom'
- }
+//  hero  : Hero  = {
+//    id : 1,
+//    name : 'Windstrom'
+//  }
 
 
 // selectedHero ?: Hero;
@@ -29,13 +29,29 @@ export class HeroesComponent implements OnInit {
   //   this.selectedHero = hero;
   //   this.messageService.add(`HeroesComponent: Selected hero id = ${hero.id}`)
   // }
+  
+  ngOnInit(): void {
+    this.getHeroes()
+  }
   getHeroes() :void {
     // this.heroes = this.heroService.getHeroes(); //从服务器中获取数据
     this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes)//改用异步的方法
   }
-  ngOnInit(): void {
-    this.getHeroes()
+  // add(name : string) :void {
+  //   name = name.trim();
+  //   if(!name) {return ;}
+  //   this.heroService.addHero({name}  as Hero).subscribe(hero => this.heroes.push(hero))
+  // }
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.heroService.addHero({ name } as Hero)
+      .subscribe(hero => {
+        this.heroes.push(hero);
+      });
   }
-
-  
+  delete(hero:Hero):void {
+    this.heroes = this.heroes.filter(hero => hero !==hero);
+    this.heroService.deleteHero(hero.id).subscribe();
+  }
 }

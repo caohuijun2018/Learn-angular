@@ -7,7 +7,7 @@ const routes: Routes = [
   {path : 'heroes',component:HeroesComponent}, //path用来匹配浏览器地址栏中的URL字符串，component：导航到该路由时，路由器应该创建的组件
   {path : 'dashboard',component:DashboardComponent},//指向DashboardComponent的路由
   {path: '',redirectTo:'/dashboard',pathMatch:'full'},
-  {path: 'details/:id',component:HeroDetailComponent}
+  {path: 'detail/:id',component:HeroDetailComponent}
 ];
 
 @NgModule({

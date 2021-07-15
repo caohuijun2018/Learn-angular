@@ -15,6 +15,7 @@ import { HttpClientModule} from '@angular/common/http';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { HeroSearchComponent } from './hero-search/hero-search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +23,7 @@ import { InMemoryDataService } from './in-memory-data.service';
     HeroDetailComponent,
     MessageComponent,
     DashboardComponent,
+    HeroSearchComponent,
     
   ],
   imports: [
@@ -33,7 +35,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 // and returns simulated server responses.
 // Remove it when a real server is ready to receive requests.
 HttpClientInMemoryWebApiModule.forRoot(
-  InMemoryDataService, { dataEncapsulation: false }
+  InMemoryDataService, { dataEncapsulation: false } //接收InMemoryDataService类来初始化内存数据库
 )
   ],
   providers: [],
